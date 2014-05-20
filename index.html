@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>USER REGISTRATION</title>
+</head>
+
+<body>
+
+<form action="form_submit.php" method="POST">
+Name: <input id="name" name="name" type="text" required/><br /><br />
+Email: <input id="email" name="email" type="email" required/><br /><br />
+Phone: <input id="phone" name="phone" type="tel" required pattern="[0-9]{10}" title="Only 10 digit Numeric!"/><br /><br />
+Date of Birth: <input type="date" name="dob" id="dob" required/><br /><br />
+
+<img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" /><br />
+Enter text shown:
+<input type="text" name="captcha_code" size="10" maxlength="6" />
+<a href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">[ Try a different image ]</a><br />
+<input type="submit" />
+</form>
+
+</body>
+</html>
