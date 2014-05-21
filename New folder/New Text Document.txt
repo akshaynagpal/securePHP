@@ -1,0 +1,4 @@
+<?php
+$img=imagecreatetruecolor(100,100);
+echo $img;
+?>
