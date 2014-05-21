@@ -1,0 +1,11 @@
+Storage procedure 
+
+
+
+USE user_db;
+DELIMITER //
+CREATE PROCEDURE `InsertValues`( IN name TEXT(30), IN email VARCHAR(50), IN phone VARCHAR(100), IN date VARCHAR(15),IN photo VARCHAR(10), IN password VARCHAR(10))
+BEGIN
+INSERT INTO user_details ( ID,name,email,phone,date,photo,password) VALUES ('',name,email,phone,date,photo,password);
+END//
+DELIMITER ;
