@@ -9,3 +9,12 @@ BEGIN
 INSERT INTO user_details ( ID,name,email,phone,date,photo,password) VALUES ('',name,email,phone,date,photo,password);
 END//
 DELIMITER ;
+
+
+
+DELIMITER //
+CREATE PROCEDURE `checkPass`( IN loginEmail VARCHAR(50))
+BEGIN
+SELECT password FROM user_details WHERE email= loginEmail;
+END//
+DELIMITER ;

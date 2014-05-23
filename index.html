@@ -1,3 +1,7 @@
+<?php  //php starts
+$_SESSION['name']='xyz';
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -9,23 +13,48 @@
 body
 {
 background-color: #00FFFF;
+text-align:center;
 }
 #form
 {
-margin-left: 30%;
-margin-right:30%;
+
 border: 5px solid #00F;
-width:40%;
+width:45%;
+float:left;
+text-align:center;
+}
+#form2
+{
+text-align:center;
+border:5px solid #00F;
+width:45%;
+float:left;
+height:511px;
+}
+#main
+{
+margin-left:5%;
+margin-right:5%;
+text-align:center;
+}
+#mainhead
+{
+background-color:#FF9900;
 }
 </style>
 </head>
 
 <body>
-<div id="form" align="center">
-<h1>User Registration</h1>
+<header id="mainhead">
+<h1>Welcome</h1>
+</header>
+<div id="main">
+
+<div id="form" >   <!--///////////////////////REGISTER FORM 1 starts//////////////////////////////////////////-->
+<h2>New User Registration</h2>
 *All fields are required.<br /><br />
 <form action="form_submit.php" method="POST" enctype="multipart/form-data">
-Name: <input id="name" name="name" type="text" required/><br /><br />
+Name: <input id="name" name="name" type="text" maxlength="30" pattern="[A-Za-z]{2,30}" title="only alphabets please!" required/><br /><br />
 Email: <input id="email" name="email" type="email" required/><br /><br />
 Phone: <input id="phone" name="phone" type="tel"  pattern="[0-9]{10}" title="Only 10 digit Numeric!" required/><br /><br />
 Date of Birth: <input type="date" name="dob" id="dob" required/><br /><br />
@@ -37,6 +66,18 @@ Enter text shown above:
 <a href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">[ Try a different image ]</a><br />
 <input type="submit" />
 </form>
+</div>
+
+<div id="form2" >  <!--////////////////////// LOGIN   FORM 2 starts/////////////////////////////////////////////-->
+<h2>Login</h2>(if already registered!)
+<br /><br />
+<form action="display.php" method="POST">
+Email: <input id="loginEmail" name="loginEmail" type="email" required/><br /><br />
+Password: <input id="loginPassword" name="loginPassword" maxlength="8" type="password"  required/>
+<input type="submit" value="LOGIN"/>
+</form>
+</div>
+
 </div>
 </body>
 
