@@ -1,12 +1,12 @@
 Storage procedure 
 
-
+NOTE :- remove commas from procedure name before using.
 
 USE user_db;
 DELIMITER //
-CREATE PROCEDURE `InsertValues`( IN name TEXT(30), IN email VARCHAR(50), IN phone VARCHAR(100), IN date VARCHAR(15),IN photo VARCHAR(10), IN password VARCHAR(10))
+CREATE PROCEDURE `InsertValues`( IN name TEXT(30), IN email VARCHAR(50), IN phone VARCHAR(100), IN date VARCHAR(15),IN photo VARCHAR(100), IN password VARCHAR(10))
 BEGIN
-INSERT INTO user_details ( ID,name,email,phone,date,photo,password) VALUES ('',name,email,phone,date,photo,password);
+INSERT INTO user_details ( name,email,phone,date,photo,password) VALUES (name,email,phone,date,photo,password);
 END//
 DELIMITER ;
 
@@ -16,5 +16,16 @@ DELIMITER //
 CREATE PROCEDURE `checkPass`( IN loginEmail VARCHAR(50))
 BEGIN
 SELECT password FROM user_details WHERE email= loginEmail;
+END//
+DELIMITER ;
+
+
+USE user_db;
+DELIMITER //
+CREATE PROCEDURE 'ChangePass'(IN cemail VARCHAR(50),IN pass VARCHAR(10))
+BEGIN
+UPDATE user_details
+SET password=pass
+WHERE email=cemail;
 END//
 DELIMITER ;

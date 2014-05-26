@@ -1,47 +1,10 @@
-<?php  //php starts
-$_SESSION['name']='xyz';
-?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>USER REGISTRATION</title>
-
-<style>
-body
-{
-background-color: #00FFFF;
-text-align:center;
-}
-#form
-{
-
-border: 5px solid #00F;
-width:45%;
-float:left;
-text-align:center;
-}
-#form2
-{
-text-align:center;
-border:5px solid #00F;
-width:45%;
-float:left;
-height:511px;
-}
-#main
-{
-margin-left:5%;
-margin-right:5%;
-text-align:center;
-}
-#mainhead
-{
-background-color:#FF9900;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
@@ -71,7 +34,7 @@ Enter text shown above:
 <div id="form2" >  <!--////////////////////// LOGIN   FORM 2 starts/////////////////////////////////////////////-->
 <h2>Login</h2>(if already registered!)
 <br /><br />
-<form action="display.php" method="POST">
+<form action="profile.php" method="POST">
 Email: <input id="loginEmail" name="loginEmail" type="email" required/><br /><br />
 Password: <input id="loginPassword" name="loginPassword" maxlength="8" type="password"  required/>
 <input type="submit" value="LOGIN"/>

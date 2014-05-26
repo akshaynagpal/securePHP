@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require 'connect.php';
 include 'pass_gen.php';
 include_once 'securimage/securimage.php';
@@ -7,9 +8,9 @@ include_once 'securimage/securimage.php';
 $phone=0;
 $photoAccept=0;
 $securimage = new Securimage();
-$photoPath = "uploads/" . $_FILES["uploadPhoto"]['name'];
-echo $photoPath;
-echo $_FILES['uploadPhoto']['tmp_name'];
+$photoPath = "uploads/" . $_FILES["uploadPhoto"]["name"];
+$photoPath;
+$_FILES['uploadPhoto']['tmp_name'];
 
 
 /* image code
@@ -49,12 +50,11 @@ else echo "Image Format not accepted!!";
 
 		if ($securimage->check($_POST['captcha_code']) == true)  // checking captcha code and image attributes (2)
 		{
-
-		// function to prevent user from running sql code into form.
-		function make_safe($variable) { 
-    	$variable = mysql_real_escape_string(trim($variable));
-    	return $variable;
-		}
+			
+		function make_safe($variable) {  // function to prevent user from running sql code into form.
+    		$variable = mysql_real_escape_string(trim($variable));
+    		return $variable;
+			}
 
 		$name = make_safe($_POST['name']);
 		$email = make_safe($_POST['email']);
@@ -63,17 +63,25 @@ else echo "Image Format not accepted!!";
 		$photoPath = make_safe($photoPath);
 		$password = rand_string(8);
 		
+		$_SESSION['Sname']=$name;
+		$_SESSION['Semail']=$email ;
+		$_SESSION['Sphone']= $phone;
+		$_SESSION['Sdate']= $date;
+		$_SESSION['SphotoPath']=$photoPath ;
+		$_SESSION['Spassword']= $password;
+		
 		
 		$uniqueResult = mysqli_query($con,"SELECT * FROM user_details WHERE email='$email'") or die(mysqli_error($con));
 		
 					if(mysqli_num_rows($uniqueResult)==0)  // if email unique
 					{
-						    
+					
 							//photo check///////////////////////////////////////
 							
 							
 							move_uploaded_file($_FILES['uploadPhoto']['name'], "" . $_FILES['uploadPhoto']['tmp_name']);
-
+								
+							
 							$allowedExts = array("gif", "jpeg", "jpg", "png");
 							$temp = explode(".", $_FILES["uploadPhoto"]["name"]);
 							$extension = end($temp);
@@ -91,6 +99,9 @@ else echo "Image Format not accepted!!";
 											move_uploaded_file($_FILES["uploadPhoto"]["tmp_name"],$photoPath);
 							
 											$q1 = "CALL InsertValues('$name','$email','$phone','$date','$photoPath','$password')";
+											
+										
+											
 											$res = mysqli_query($con,$q1) or die(mysqli_error($con));
 
 													  if($res)
