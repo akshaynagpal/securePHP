@@ -1,8 +1,8 @@
 <?php
-
+include 'connect.php';
 session_start();
 
-				if(isset($_POST['oldpass']) && isset($_POST['newpass']))  //when fileds are filled in password change form
+				if( isset($_POST['oldpass']) && isset($_POST['newpass']) )  //when fileds are filled in password change form
 				{
 					$oldpass=$_POST['oldpass'];
 					$newpass=$_POST['newpass'];

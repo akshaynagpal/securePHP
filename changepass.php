@@ -13,8 +13,8 @@ session_start();
 
 <form action="changepasssubmit.php" method="POST">
 
-Current Password:<input type="password" maxlength="8" id="oldpass" required/><br/><br/>
-New Password:<input type="password"  maxlength="8" id="newpass"required/><br/><br/>
+Current Password:<input type="password" maxlength="8" id="oldpass" name="oldpass" required/><br/><br/>
+New Password:<input type="password"  maxlength="8" id="newpass" name="newpass" required/><br/><br/>
 Confirm New Password:<input type="password" maxlength="8" id="cnewpass"required/><br/><br/>
 <input type="submit" value="Change Password">
 
