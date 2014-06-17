@@ -7,6 +7,7 @@ session_start();
 					$oldpass=$_POST['oldpass'];
 					$newpass=$_POST['newpass'];
 					$confnewpass=$_POST['cnewpass'];
+					$email=$_POST['email'];
 	
 						if($oldpass==$_SESSION['Spassword'])
 						{

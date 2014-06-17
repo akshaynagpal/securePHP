@@ -3,8 +3,9 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>USER REGISTRATION</title>
+<title>My Site</title>
 <link rel="stylesheet" type="text/css" href="index.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="pace.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="loading.css" />
 </head>
@@ -20,7 +21,7 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-      // Logged into your app and Facebook.
+    testAPI();
   
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -80,13 +81,37 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
+	  //document.getElementById("fblog").innerHTML='<img onclick="FB.logout()" src="fb_logout_button.jpg" > ';
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
+			FB.api('/me', function(response) {
+					
+					console.log('Successful login for: ' + response.name);
+					document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name+ '!';
+					var info = JSON.stringify(response);
+					var parsedinfo=JSON.parse(info);
+					alert(info);
+					var user_id = parsedinfo.id;
+					var user_name = parsedinfo.name;
+					var user_dob=parsedinfo.
+					
+					$.ajax({
+							  type:"POST",
+							  url:"profile.php",
+							  data:{user_id:user_id,user_name:user_name}
+						  }).done(function(result){
+							  
+							  document.getElementById("status2").innerHTML=result;
+							  });
+					
+					
+			});
   }
+  
+  FB.logout(function(response) {
+    FB.Auth.setAuthResponse(null, 'unknown');
+	window.location.href(index.html);
+    });
+
 </script>
 
 
@@ -125,9 +150,14 @@ Password: <input id="loginPassword" name="loginPassword" maxlength="8" type="pas
 <br />
 <div style="text-align:center"> OR</div><br />
 <h2>Login using Facebook</h2>
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
 
+<div id="fblog">
+<fb:login-button scope="public_profile,email,user_friends" data-size="xlarge" data-auto-logout-link="true" data-show-faces="true" data-max-rows="1" onlogin="checkLoginState();">
+</fb:login-button>
+</div>
+
+<div id="status"></div>
+<div id="status2"></div>
 </div>
 
 </div>

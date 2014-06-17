@@ -19,7 +19,7 @@ echo '<link rel="stylesheet" href="profile.css" type="text/css">';
 				  $passCheckArray= mysqli_fetch_array($passCheckResult);
 				  mysqli_free_result($passCheckResult);
 				  mysqli_close($con);
-				  
+				
 				  //connecting again
 				  $con= mysqli_connect('localhost','root') or die("cannot connect");
 				  
@@ -57,7 +57,8 @@ echo '<link rel="stylesheet" href="profile.css" type="text/css">';
 									echo $displayArray['date'];
 									echo "<br/><br/>";
 									echo '<a href="index.html">Logout</a>';
-									echo '<a href="changepass.php">Change Password</a>';
+									
+									echo '<a href= "changepass.php?email=' .$email.'" >Change Password</a>';
 									echo '<a href="#">Change Profile Picture</a>';
 									echo '<a href="editprofile.php">Edit Profile</a>';
 									echo "</body>";
@@ -85,7 +86,11 @@ echo '<link rel="stylesheet" href="profile.css" type="text/css">';
 						echo "<a href=index.html>Try Again</a>";
 						}
 				}
+				//else if(isset($_POST['user_id']) && isset($_POST['user_name']))
+				//{
+					
 				
+					//}
 				else //redirect to homepage for login
 				{
 				  echo "Please login to view this page.!Redirecting to homepage...";
