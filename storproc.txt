@@ -32,8 +32,8 @@ DELIMITER ;
 
 USE user_db;
 DELIMITER //
-CREATE PROCEDURE `InsertFBValues`( IN fbid VARCHAR(20), IN name TEXT(30), IN email VARCHAR(50), IN phone VARCHAR(100), IN date VARCHAR(15),IN photo VARCHAR(100), IN password VARCHAR(10))
+CREATE PROCEDURE `InsertFBValues`( IN fbid VARCHAR(20), IN name TEXT(30), IN email VARCHAR(50), IN date VARCHAR(15),IN photo VARCHAR(100))
 BEGIN
-INSERT INTO user_details ( FB_id,name,email,phone,date,photo,password) VALUES (fbid,name,email,phone,date,photo,password);
+INSERT INTO user_details ( FB_id,name,email,date,photo) VALUES (fbid,name,email,date,photo);
 END//
 DELIMITER ;

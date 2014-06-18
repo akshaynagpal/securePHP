@@ -89,22 +89,26 @@
 					document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name+ '!';
 					var info = JSON.stringify(response);
 					var parsedinfo=JSON.parse(info);
-					alert(info);
+					
+					
 					var user_id = parsedinfo.id;
 					var user_name = parsedinfo.name;
-					var user_dob=parsedinfo.
+					var user_dob=parsedinfo.birthday;
+					var pic_url="graph.facebook.com/"+user_id+"/picture";
+					var user_email=parsedinfo.email;
 					
 					$.ajax({
 							  type:"POST",
 							  url:"profile.php",
-							  data:{user_id:user_id,user_name:user_name}
+							  data:{user_id:user_id,user_name:user_name,user_dob:user_dob,pic_url:pic_url,user_email:user_email}
 						  }).done(function(result){
-							  
-							  document.getElementById("status2").innerHTML=result;
+							  document.innerHTML=result;							
 							  });
 					
 					
 			});
+			
+	
   }
   
   FB.logout(function(response) {
@@ -152,7 +156,7 @@ Password: <input id="loginPassword" name="loginPassword" maxlength="8" type="pas
 <h2>Login using Facebook</h2>
 
 <div id="fblog">
-<fb:login-button scope="public_profile,email,user_friends" data-size="xlarge" data-auto-logout-link="true" data-show-faces="true" data-max-rows="1" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email,user_friends,user_birthday" data-size="xlarge" data-auto-logout-link="true" data-show-faces="true" data-max-rows="1" onlogin="checkLoginState();">
 </fb:login-button>
 </div>
 
